@@ -1,0 +1,3 @@
+
+ACCOUNT_SID = "ACdfa3f1aaff34d80bbb30ee3a6bc4fd43"
+AUTH_TOKEN = "2f5d58224caea4bb1071906e610e215c"
