@@ -17,7 +17,7 @@
 
     /* Let us know when the client is ready. */
     Twilio.Device.ready(function (device) {
-        $("#log").text("Ready");
+        $("#log").text("Client '{{ client_name }}' is ready");
     });
 
     /* Report any errors on the screen */
