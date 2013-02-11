@@ -2,7 +2,7 @@
 
 <html>
   <head>
-    <title>Hello Client Monkey 1</title>
+    <title>Hello Client Moon</title>
     <script type="text/javascript"
       src="//static.twilio.com/libs/twiliojs/1.1/twilio.min.js"></script>
     <script type="text/javascript"
@@ -12,7 +12,6 @@
       type="text/css" rel="stylesheet" />
     <script type="text/javascript">
 
- 
     /* Create the Client with a Capability Token */
     Twilio.Device.setup("{{ token }}");
  
@@ -35,10 +34,19 @@
     Twilio.Device.disconnect(function (conn) {
         $("#log").text("Call ended");
     });
-    
+
+    /* Listen for incoming connections */
+    Twilio.Device.incoming(funciton (conn) {
+        $("#log").text("Incoming connection from " + conn.parameters.From);
+        // accept the incoming connection and start two-way audio
+        conn.accept();
+     }); 
+
     /* Connect to Twilio when we call this function. */
     function call() {
-        Twilio.Device.connect();
+        // get the phone number to connect the call to
+        params = {"PhoneNumber": $("#number").val()};:w
+        Twilio.Device.connect(params);
     }
     
     /* A function to end a connection to Twilio. */
@@ -54,13 +62,14 @@
       Call
     </button>
 
-    <!-- use an onclick action to hang up the call when the user presses
-    the button -->
     <button class="hangup" onclick="hangup();">
         Hangup
     </button>
 
+    <input type="text" id="number" name="number" placeholder="Enter a phone number to call"/>
+
     <div id="log">Loading pigeons...</div>
+  
   </body>
 </html>
 
