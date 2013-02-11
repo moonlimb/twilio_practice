@@ -8,7 +8,6 @@ app = Flask(__name__)
 
 # my Twilio phone number
 caller_id = "+%s" %(my_twilio_num)
-print caller_id
 default_client = "Moon"
 
 @app.route('/voice', methods=['GET','POST']) 
@@ -34,8 +33,9 @@ def client():
     application_sid = "APabe7650f654fc34655fc81ae71caa3ff"
     application_sid2 = "AP123123"
 
-    capability.allow_client_outgoing(application_sid2)
+    capability.allow_client_outgoing(application_sid)
     capability.allow_client_incoming(default_client)
+
     token = capability.generate()
     return render_template('client.html', token=token)
 
